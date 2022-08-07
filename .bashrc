@@ -86,7 +86,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -182,6 +182,12 @@ a ctl='crontab -l'
 a scs='systemctl status'
 a sce='sudo systemctl enable'
 a sc='sudo systemctl'
+
+# Bash Plugins and handy options
+source ~/.local/share/blesh/ble.sh
+# bind 'set show-all-if-ambiguous on'
+# bind 'TAB:menu-complete'
+shopt -s autocd
 
 # bind keys
 bind '"\e[1;5A": history-search-backward'
