@@ -154,7 +154,35 @@ formated_path(){
 # disable the default virtualenv prompt change
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]┌──\[\033[01;34m\]$(__virtualenv_ps1)\[\033[01;32m\][\u@\h] \[\033[01;34m\]\w \[\033[01;32m\]$(get_git_branch)\n\[\033[01;32m\]└─\$\[\033[00m\] '
+export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]┌──\[\033[01;34m\]$(__virtualenv_ps1)\[\033[01;32m\][\u@\h] \[\033[01;34m\]\w\[\033[01;32m\]$(get_git_branch)\n\[\033[01;32m\]└─\$\[\033[00m\] '
 # export PS1=formated_path $PS1
 
+alias g=gedit
 
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias a='alias'
+a c='clear'
+a sd='shutdown now'
+a saa='sudo apt autoremove'
+a ar='sudo apt remove '
+a src='source ~/.bashrc'
+a sai='sudo apt install '
+a upd='sudo apt update && sudo apt -y upgrade'
+a vb='vim ~/.bashrc'
+a vv='vim ~/.vimrc'
+a v='vim'
+a rb='reboot'
+a cte='crontab -e'
+a ctl='crontab -l'
+a scs='systemctl status'
+a sce='sudo systemctl enable'
+a sc='sudo systemctl'
+
+# bind keys
+bind '"\e[1;5A": history-search-backward'
+bind '"\e[1;5B": history-search-forward'
