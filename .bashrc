@@ -124,7 +124,10 @@ PATH=$PATH:/home/abhinav/Abhinav/AppsUbuntu/Applications/cling_2020-11-05_ROOT-u
 # Aliases
 alias android-studio="/opt/android-studio/bin/studio.sh"
 alias ue4editor="/home/abhinav/Abhinav/Programming/Unreal/Source/Linux/UnrealEngine/Engine/Binaries/Linux/UE4Editor"
-. "$HOME/.cargo/env"
+
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
 
 
 # disable ctrl-s
@@ -235,8 +238,13 @@ shopt -s autocd
 bind '"\e[1;5A": history-search-backward'
 bind '"\e[1;5B": history-search-forward'
 
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+if [ -f $HOME/.asdf/asdf.sh ]; then
+    . $HOME/.asdf/asdf.sh
+fi
+
+if [ -f $HOME/.asdf/completions/asdf.bash ]; then
+    . $HOME/.asdf/completions/asdf.bash
+fi
 
 # RISC-V path
 export PATH=$PATH:/opt/riscv/bin
