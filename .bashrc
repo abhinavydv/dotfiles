@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -159,22 +159,21 @@ export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]┌──\[\033[01;
 
 alias g=gedit
 
-
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 alias a='alias'
 a c='clear'
+a py='python'
+a py2='python2'
+a riscemu='python -m riscemu'
 a sd='shutdown now'
 a saa='sudo apt autoremove'
 a ar='sudo apt remove '
 a src='source ~/.bashrc'
 a sai='sudo apt install '
-a upd='sudo apt update && sudo apt -y upgrade'
+a sad='sudo apt dist-upgrade'
+a sau='sudo apt update && sudo apt -y upgrade'
 a vb='vim ~/.bashrc'
 a vv='vim ~/.vimrc'
+a vg='sudo vim /etc/default/grub'
 a v='vim'
 a rb='reboot'
 a cte='crontab -e'
@@ -182,9 +181,52 @@ a ctl='crontab -l'
 a scs='systemctl status'
 a sce='sudo systemctl enable'
 a sc='sudo systemctl'
+a mtm='sudo mkdir /media/abhinav/MyDrive && sudo mount /dev/nvme0n1p4 /media/abhinav/MyDrive'
+a mta='sudo mkdir -p /media/abhinav/ArchLinux && sudo mount /dev/nvme0n1p8 /media/abhinav/ArchLinux'
+a umm='sudo umount /dev/nvme0n1p4 && sudo rmdir /media/abhinav/MyDrive'
+a uma='sudo umount /dev/nvme0n1p8 && sudo rmdir /media/abhinav/ArchLinux'
+a rsc='~/Applications/Ripes-v2.2.5-2-geb801ef-linux-x86_64.AppImage --mode cli -t asm --proc RV64_SS --regs --src'
+a pg='ps aux | grep'
+a s='screen'
+a bdsm='ssh azureuser@20.193.230.163'
+a xv6='cd ~/Abhinav/AppsUbuntu/Applications/xv6 && make qemu-nox'
+
+
+names=('harsh' 'maharshi' 'vedant' 'rajiv' 'raju')
+
+eval "$(echo "orig_command_not_found_handle()"; declare -f command_not_found_handle | tail -n +2)"
+
+function command_not_found_handle(){
+    if [[ " ${names[*]} " = *" $1 "* ]]; then
+        echo "$1 saala!"
+    else
+        orig_command_not_found_handle $@
+    fi
+}
+
+function abhinav(){
+    ascii-image-converter ~/Downloads/Images/Me.jpeg -C
+    figlet Abhinav
+}
+
+function int() {
+    echo "kaam pe dhyan de. Idhar udhar ki sochna band kar!!"
+}
+
+function hotspot() {
+    nmcli connection up Hotspot
+}
+
+function vs(){
+    echo    
+
+}
+
 
 # Bash Plugins and handy options
-source ~/.local/share/blesh/ble.sh
+if [ -f ~/.local/share/blesh/ble.sh ]; then
+    source ~/.local/share/blesh/ble.sh
+fi
 # bind 'set show-all-if-ambiguous on'
 # bind 'TAB:menu-complete'
 shopt -s autocd
@@ -192,3 +234,43 @@ shopt -s autocd
 # bind keys
 bind '"\e[1;5A": history-search-backward'
 bind '"\e[1;5B": history-search-forward'
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+# RISC-V path
+export PATH=$PATH:/opt/riscv/bin
+
+#RET-DEC path, The retargetable decompiler
+export PATH=$PATH:/home/abhinav/Abhinav/AppsUbuntu/Applications/retdec/bin
+
+# PATH to pico sdk
+export PICO_SDK_PATH=/home/abhinav/Abhinav/Programming/Robotics/Pico/pico-sdk
+
+# PATH to useful puthon scripts
+export PATH=$PATH:/home/abhinav/Python/Scripts
+
+#PATH to apps
+export PATH=$PATH:/home/abhinav/Applications/Ripes-v2.2.5-2-geb801ef-linux-x86_64.AppImage
+
+# Initialize Codex CLI
+if [ -f "$HOME/.codexclirc" ]; then
+    . "$HOME/.codexclirc"
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# path to user script installs through pip
+export PATH=$PATH:/home/abhinav/.local/bin
+
+# path to wabt binaries
+export PATH=$PATH:/home/abhinav/Abhinav/AppsUbuntu/Applications/wabt/bin
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/mnt/MyDrive/Abhinav/AppsUbuntu/google-cloud-sdk/path.bash.inc' ]; then . '/mnt/MyDrive/Abhinav/AppsUbuntu/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/mnt/MyDrive/Abhinav/AppsUbuntu/google-cloud-sdk/completion.bash.inc' ]; then . '/mnt/MyDrive/Abhinav/AppsUbuntu/google-cloud-sdk/completion.bash.inc'; fi

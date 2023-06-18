@@ -20,14 +20,17 @@ Plugin 'VundleVim/Vundle.vim'
 " Python plugin 'jedi-vim'
 Plugin 'davidhalter/jedi-vim'
 
+" You Complete Me
+Plugin 'ycm-core/YouCompleteMe'
+
 " C++ plugin
-Plugin 'rip-rip/clang_complete'
+" Plugin 'rip-rip/clang_complete'
 
 " LaTex plugin
-Plugin 'lervag/vimtex'
+" Plugin 'lervag/vimtex'
 
 " Javascript formatter
-Plugin 'maksimr/vim-jsbeautify'
+" Plugin 'maksimr/vim-jsbeautify'
 
 call vundle#end()
 
