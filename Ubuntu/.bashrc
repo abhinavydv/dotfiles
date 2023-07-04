@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -124,10 +124,7 @@ PATH=$PATH:/home/abhinav/Abhinav/AppsUbuntu/Applications/cling_2020-11-05_ROOT-u
 # Aliases
 alias android-studio="/opt/android-studio/bin/studio.sh"
 alias ue4editor="/home/abhinav/Abhinav/Programming/Unreal/Source/Linux/UnrealEngine/Engine/Binaries/Linux/UE4Editor"
-
-if [ -f "$HOME/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
-fi
+. "$HOME/.cargo/env"
 
 
 # disable ctrl-s
@@ -162,21 +159,22 @@ export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]┌──\[\033[01;
 
 alias g=gedit
 
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 alias a='alias'
 a c='clear'
-a py='python'
-a py2='python2'
-a riscemu='python -m riscemu'
 a sd='shutdown now'
 a saa='sudo apt autoremove'
 a ar='sudo apt remove '
 a src='source ~/.bashrc'
 a sai='sudo apt install '
-a sad='sudo apt dist-upgrade'
-a sau='sudo apt update && sudo apt -y upgrade'
+a upd='sudo apt update && sudo apt -y upgrade'
 a vb='vim ~/.bashrc'
 a vv='vim ~/.vimrc'
-a vg='sudo vim /etc/default/grub'
 a v='vim'
 a rb='reboot'
 a cte='crontab -e'
@@ -184,52 +182,9 @@ a ctl='crontab -l'
 a scs='systemctl status'
 a sce='sudo systemctl enable'
 a sc='sudo systemctl'
-a mtm='sudo mkdir /media/abhinav/MyDrive && sudo mount /dev/nvme0n1p4 /media/abhinav/MyDrive'
-a mta='sudo mkdir -p /media/abhinav/ArchLinux && sudo mount /dev/nvme0n1p8 /media/abhinav/ArchLinux'
-a umm='sudo umount /dev/nvme0n1p4 && sudo rmdir /media/abhinav/MyDrive'
-a uma='sudo umount /dev/nvme0n1p8 && sudo rmdir /media/abhinav/ArchLinux'
-a rsc='~/Applications/Ripes-v2.2.5-2-geb801ef-linux-x86_64.AppImage --mode cli -t asm --proc RV64_SS --regs --src'
-a pg='ps aux | grep'
-a s='screen'
-a bdsm='ssh azureuser@20.193.230.163'
-a xv6='cd ~/Abhinav/AppsUbuntu/Applications/xv6 && make qemu-nox'
-
-
-names=('harsh' 'maharshi' 'vedant' 'rajiv' 'raju')
-
-eval "$(echo "orig_command_not_found_handle()"; declare -f command_not_found_handle | tail -n +2)"
-
-function command_not_found_handle(){
-    if [[ " ${names[*]} " = *" $1 "* ]]; then
-        echo "$1 saala!"
-    else
-        orig_command_not_found_handle $@
-    fi
-}
-
-function abhinav(){
-    ascii-image-converter ~/Downloads/Images/Me.jpeg -C
-    figlet Abhinav
-}
-
-function int() {
-    echo "kaam pe dhyan de. Idhar udhar ki sochna band kar!!"
-}
-
-function hotspot() {
-    nmcli connection up Hotspot
-}
-
-function vs(){
-    echo    
-
-}
-
 
 # Bash Plugins and handy options
-if [ -f ~/.local/share/blesh/ble.sh ]; then
-    source ~/.local/share/blesh/ble.sh
-fi
+source ~/.local/share/blesh/ble.sh
 # bind 'set show-all-if-ambiguous on'
 # bind 'TAB:menu-complete'
 shopt -s autocd
@@ -282,3 +237,11 @@ if [ -f '/mnt/MyDrive/Abhinav/AppsUbuntu/google-cloud-sdk/path.bash.inc' ]; then
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/mnt/MyDrive/Abhinav/AppsUbuntu/google-cloud-sdk/completion.bash.inc' ]; then . '/mnt/MyDrive/Abhinav/AppsUbuntu/google-cloud-sdk/completion.bash.inc'; fi
+
+# Add nvidia cuda to PATH
+export PATH=$PATH:/usr/local/cuda-12.1/bin
+
+# Add path to go installed packages
+export PATH=$PATH:/home/abhinav/go/bin
+
+
